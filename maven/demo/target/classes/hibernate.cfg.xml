@@ -11,10 +11,11 @@
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">8005</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.hbm2ddl.auto">create</property><!-- create first drop table then create it every time you run the project, update will update the table and if you dont have a table then it will create it. -->
         <property name="hibernate.show_sql">true</property>
 
-        <mapping class="com.kushagra.student"/>
+        <mapping class="com.kushagra.alien"/>
+        <mapping class="com.kushagra.Laptop"/>
 
     </session-factory>
 </hibernate-configuration>
