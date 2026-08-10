@@ -13,10 +13,18 @@ public class App {
     public static void main(String[] args) {
         alien a1 =new alien();
         a1.setName("princy");
-        a1.setId(3);
+        a1.setId(1);
         a1.setTech("Java");//it was used for saving the data in database.
         
-        
+        alien a2 =new alien();
+        a2.setName("mami");
+        a2.setId(2);
+        a2.setTech("dotnet");
+
+        alien a3 =new alien();
+        a3.setName("papa");
+        a3.setId(3);
+        a3.setTech("php");
 
         Laptop l1 = new Laptop();
         l1.setBrand("Lenovo");
@@ -28,15 +36,24 @@ public class App {
         l2.setLid(2);
         l2.setModel("Inspiron");
 
+        Laptop l3 = new Laptop();
+        l3.setBrand("Machbook");
+        l3.setLid(3);
+        l3.setModel("AIR");
+
         // student s1 = new student();
        //  s1.setName("princy");
         // s1.setRollno(3);
         // s1.setAge(20);//we are using this object to update the data in database.
                          //we dont need these for deletion.
         a1.setLaptops(Arrays.asList(l1, l2));//we are using this object to save the data in database.we use Arrays.asList() method to convert the array of objects into a list of objects, because we are using List in alien class. we can also use Set or Map instead of List.
-       
-        l1.setAlien(a1);
-        l2.setAlien(a1);
+        a2.setLaptops(Arrays.asList(l1, l3));
+        a3.setLaptops(Arrays.asList(l3, l2));
+
+
+        l1.setAliens(Arrays.asList(a1, a2));
+        l2.setAliens(Arrays.asList(a1, a3));
+        l3.setAliens(Arrays.asList(a2, a3));
         // student s2;
         // Configuration cfg = new Configuration();
         // cfg.addAnnotatedClass(com.kushagra.student.class);
@@ -64,8 +81,11 @@ public class App {
             
             // session.remove(s1);//to delete the data, you just have to pass thee object containing the data. now you can delete without first fetching the data from database, but you then need to give data to object just like what we doing while saving the data.
             session.persist(a1);
+            session.persist(a2);
+            session.persist(a3);
             session.persist(l1);
             session.persist(l2);
+            session.persist(l3);
             
             
             tx.commit();

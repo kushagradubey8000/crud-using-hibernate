@@ -1,9 +1,10 @@
 package com.kushagra;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Laptop {
@@ -13,15 +14,17 @@ public class Laptop {
     private String brand;
     private String model;
 
-    @ManyToOne//one laptop can have only one alien, but one alien can have many laptops.manyto one never use mappedBy attribute, because it is used in one to many relationship.
-    @JoinColumn(name = "alien_id")
-    private alien alien;
+    // @ManyToOne //one laptop can have only one alien, but one alien can have many laptops.manyto one never use mappedBy attribute, because it is used in one to many relationship.
+    // @JoinColumn(name = "alien_id")
+    @ManyToMany(mappedBy="laptops")
+    private List<alien> aliens;
 
-    public alien getAlien() {
-        return alien;
+    public List<alien> getAliens() {
+        return aliens;
     }
-    public void setAlien(alien alien) {
-        this.alien = alien;
+
+    public void setAliens(List<alien> aliens) {
+        this.aliens = aliens;
     }
     
 
@@ -45,8 +48,10 @@ public class Laptop {
     }
     @Override
     public String toString() {
-        return "Laptop [lid=" + lid + ", brand=" + brand + ", model=" + model + ", alien=" + alien + "]";
+        return "Laptop [lid=" + lid + ", brand=" + brand + ", model=" + model + ", alien=" + aliens + "]";
     }
+
+    
    
 
     
